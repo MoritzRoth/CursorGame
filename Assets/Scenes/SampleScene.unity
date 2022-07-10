@@ -1318,7 +1318,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   mouseLocked: 0
-  alwaysShowCursor: 1
+  alwaysShowCursor: 0
+  cursorSpeed: 1
 --- !u!1 &1048346498
 GameObject:
   m_ObjectHideFlags: 0

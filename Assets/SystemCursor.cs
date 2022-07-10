@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -18,10 +19,11 @@ public class SystemCursor : MonoBehaviour {
     public bool mouseLocked = false;
 
     public bool alwaysShowCursor = false;
+    public float cursorSpeed = 1;
 
     private bool ignoreNextMouseMove = false;
 
-    Vector2 pmp = Vector2.zero;
+    private Vector2 pmp = Vector2.zero;
 
 #if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
 
@@ -44,11 +46,17 @@ public class SystemCursor : MonoBehaviour {
             }
         }
     }
+    Vector2 getRealPos() {
+        Point p = System.Windows.Forms.Cursor.Position;
+        return new Vector2(p.X, -p.Y);
+    }
 
     private Vector2 mouseMoveAndWrap(bool shouldWrap) {
+        //Vector2 rmp = getRealPos();
+
         Vector2 mp = Mouse.current.position.ReadValue();
         Vector2 screen = new Vector2(Screen.width, Screen.height);
-        int d = 1;
+        int d = (int)(Mathf.Min(screen.x, screen.y)/6);
 
         int wrapHorizontal = 0;
         if (mp.x <= d)
@@ -64,11 +72,10 @@ public class SystemCursor : MonoBehaviour {
 
         Vector2 delta = mp - pmp;
         pmp = mp;
-
         if (shouldWrap && (wrapHorizontal != 0 || wrapVertical != 0)) {
             Win32.GetCursorPos(out Win32.POINT p);
             Vector2 wrapDelta = new Vector2(wrapHorizontal, wrapVertical);
-            wrapDelta.Scale(screen - d * Vector2.one);
+            wrapDelta.Scale(screen - d * 2 * Vector2.one);
 
             Win32.SetCursorPos(p.X + (int)wrapDelta.x, p.Y + (int)wrapDelta.y);
 
@@ -78,15 +85,19 @@ public class SystemCursor : MonoBehaviour {
             pmp = mp + wrapDelta;
         }
 
+        
+        //Vector2 delta = rmp - pmp;
+        //pmp = getRealPos();
+
         return delta;
     }
 
 #endif
 
-    private void Update() {
+    private void FixedUpdate() {
         Vector2 delta = mouseMoveAndWrap(mouseLocked);
         if(delta != Vector2.zero && !ignoreNextMouseMove) {
-            CursorMove.Invoke(delta * 2);
+            CursorMove.Invoke(delta * cursorSpeed);
         }
         ignoreNextMouseMove = false;
     }
