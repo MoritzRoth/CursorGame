@@ -1015,9 +1015,11 @@ GameObject:
   m_Component:
   - component: {fileID: 901818369}
   - component: {fileID: 901818368}
-  - component: {fileID: 901818367}
+  - component: {fileID: 901818371}
   - component: {fileID: 901818366}
   - component: {fileID: 901818365}
+  - component: {fileID: 901818372}
+  - component: {fileID: 901818370}
   m_Layer: 0
   m_Name: Cursor
   m_TagString: Untagged
@@ -1037,6 +1039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d0f625fe55f1324a97ad714381d843e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursorMovement: {fileID: 0}
 --- !u!50 &901818366
 Rigidbody2D:
   serializedVersion: 4
@@ -1052,38 +1055,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!61 &901818367
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 901818364}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 1.04}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.64, y: 1.04}
-  m_EdgeRadius: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!212 &901818368
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1151,6 +1128,197 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &901818370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901818364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 7fb9104b563f23541982b1e1a9e48228, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d6322f97-2295-4f71-a64b-56f6189801e9
+    m_ActionName: Player/Move[/Mouse/delta,/Pen/delta]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 901818372}
+        m_TargetAssemblyTypeName: SystemCursor, Assembly-CSharp
+        m_MethodName: LMB
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 901818365}
+        m_TargetAssemblyTypeName: CursorController, Assembly-CSharp
+        m_MethodName: LMB
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d5e6ff6b-eb26-4d11-819d-b6b80c48070d
+    m_ActionName: Player/LMB[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4271c34a-ac05-4a3a-b6e6-bd14bd58c691
+    m_ActionName: Player/RMB[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7b5f75b2-2529-45c2-9eda-a57e232b1fda
+    m_ActionName: Player/MMB[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ac6063f6-a63c-453b-9373-686c08b13703
+    m_ActionName: Player/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 901818372}
+        m_TargetAssemblyTypeName: SystemCursor, Assembly-CSharp
+        m_MethodName: toggleMouseLock
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a5db0f5b-665f-468a-bb60-5461b6b7ba77
+    m_ActionName: Player/ToggleCapture[/Keyboard/alt]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0611ef07-b225-4c0c-b556-7fea0097825e
+    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b492b485-e0ee-4e22-a7aa-a59cea3f4538
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 23db5aad-af7f-4ec9-b4a2-8ae2f1ed4078
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bb84263c-70b3-4610-b323-df386e9bfa70
+    m_ActionName: UI/Point[/Mouse/position,/Pen/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9d48b63e-e1df-4616-bbb6-86fef477914d
+    m_ActionName: UI/Click[/Mouse/leftButton,/Pen/tip]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 65b27389-0037-45fd-b828-76cc6b756cc0
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 49512e96-de2d-435c-85da-ff07dcbf0e3e
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bfba2eac-7199-4f10-b736-1b602e8616ac
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: Keyboard&Mouse
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!60 &901818371
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901818364}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.64, y: 1.04}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.32, y: 0.03}
+      - {x: 0.21, y: 0.14999999}
+      - {x: -0.13, y: 0.45}
+      - {x: -0.21, y: 0.52}
+      - {x: -0.32, y: 0.52}
+      - {x: -0.32, y: -0.38}
+      - {x: -0.13, y: -0.42999998}
+      - {x: -0.06, y: -0.52}
+      - {x: 0.099999994, y: -0.52}
+      - {x: 0.17999999, y: -0.44}
+      - {x: 0.19, y: -0.26999998}
+      - {x: 0.32, y: -0.22}
+--- !u!114 &901818372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901818364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 367e81f404f3f2945a796b5852d2d3b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnWrap:
+    m_PersistentCalls:
+      m_Calls: []
+  CursorMove:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 901818365}
+        m_TargetAssemblyTypeName: CursorController, Assembly-CSharp
+        m_MethodName: cursorMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  mouseLocked: 0
+  alwaysShowCursor: 1
 --- !u!1 &1048346498
 GameObject:
   m_ObjectHideFlags: 0
