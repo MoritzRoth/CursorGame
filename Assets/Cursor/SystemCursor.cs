@@ -75,7 +75,7 @@ public class SystemCursor : MonoBehaviour {
         if (shouldWrap && (wrapHorizontal != 0 || wrapVertical != 0)) {
             Win32.GetCursorPos(out Win32.POINT p);
             Vector2 wrapDelta = new Vector2(wrapHorizontal, wrapVertical);
-            wrapDelta.Scale(screen - d * 2 * Vector2.one);
+            wrapDelta.Scale(screen - (d + 10) * 2 * Vector2.one);
 
             Win32.SetCursorPos(p.X + (int)wrapDelta.x, p.Y + (int)wrapDelta.y);
 
@@ -106,19 +106,26 @@ public class SystemCursor : MonoBehaviour {
         if (focus) ignoreNextMouseMove = true;
     }
 
-    public void toggleMouseLock() {
+    public void toggleMouseLock(InputAction.CallbackContext context) {
+        if (!context.performed) return;
+
+        Debug.Log("mouse lock toggle");
         if (mouseLocked) {
             Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         } else {
             Cursor.visible = alwaysShowCursor;
+            Cursor.lockState = CursorLockMode.Confined;
         }
 
         mouseLocked = !mouseLocked;
     }
 
     public void LMB(InputAction.CallbackContext context) {
+        if (!context.performed) return;
+
         if (!mouseLocked) {
-            toggleMouseLock();
+            toggleMouseLock(context);
             return;
         }
     }

@@ -58,6 +58,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Quit",
+                    "type": "Button",
+                    "id": "25535091-f81c-4d47-9d51-b3cc5a549e90",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ToggleLogDrawing",
+                    "type": "Button",
+                    "id": "c14f37f0-58fa-416c-9470-72277bea7e31",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -98,7 +116,7 @@
                     "name": "",
                     "id": "ef0e6f94-4687-40c1-8468-a66800841d38",
                     "path": "<Keyboard>/alt",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "ToggleCapture",
@@ -109,9 +127,9 @@
                     "name": "",
                     "id": "419835f7-bf11-4a0f-8283-9fb1843787c5",
                     "path": "<Keyboard>/space",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "ToggleCapture",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -146,6 +164,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f9473b58-65d9-4976-bd1f-a35c0e365dfb",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Quit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "00eb6711-0b0a-4663-a865-32381142428d",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ToggleLogDrawing",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
