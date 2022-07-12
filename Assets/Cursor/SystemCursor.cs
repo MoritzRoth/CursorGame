@@ -46,17 +46,21 @@ public class SystemCursor : MonoBehaviour {
             }
         }
     }
-    Vector2 getRealPos() {
+    Vector2Int getRealPos() {
         Point p = System.Windows.Forms.Cursor.Position;
-        return new Vector2(p.X, -p.Y);
+        return new Vector2Int(p.X, Screen.currentResolution.height - p.Y - 1);          // correct cursor position to unity units
+    }
+
+    private void setRealPos(Vector2Int p) {
+        Vector2Int c = new Vector2Int(p.x, Screen.currentResolution.height - p.y - 1);    // correct cursor position to windows units
+        System.Windows.Forms.Cursor.Position = new Point(c.x, c.y);
     }
 
     private Vector2 mouseMoveAndWrap(bool shouldWrap) {
-        //Vector2 rmp = getRealPos();
 
         Vector2 mp = Mouse.current.position.ReadValue();
         Vector2 screen = new Vector2(Screen.width, Screen.height);
-        int d = (int)(Mathf.Min(screen.x, screen.y)/6);
+        int d = (int)(Mathf.Min(screen.x, screen.y) / 6);
 
         int wrapHorizontal = 0;
         if (mp.x <= d)
@@ -85,17 +89,51 @@ public class SystemCursor : MonoBehaviour {
             pmp = mp + wrapDelta;
         }
 
-        
-        //Vector2 delta = rmp - pmp;
-        //pmp = getRealPos();
-
         return delta;
     }
 
+    private Vector2Int vpDim() {
+        return new Vector2Int(Screen.width, Screen.height);
+    }
+
+    private Vector2Int dpDim() {
+        return new Vector2Int(Screen.currentResolution.width, Screen.currentResolution.height);
+    }
+
+    private Vector2Int botLeftVPPos() {
+        Vector2Int viewportDim = vpDim();
+        Vector2Int displayDim = dpDim();
+
+        Vector2Int DPTopToVPTop = Screen.mainWindowPosition;
+        Vector2Int DPBotToVPTop = new Vector2Int(DPTopToVPTop.x, displayDim.y - DPTopToVPTop.y - 1);
+        Vector2Int DPBotToVPBot = DPBotToVPTop - new Vector2Int(0, viewportDim.y);
+
+        return DPBotToVPBot;
+    }
+
+    private Vector2 captureMouse(bool shouldCapture) {
+        if (!shouldCapture) return Vector2.zero;
+
+        Vector2Int displayMP = getRealPos();
+
+        Vector2Int viewportDim = vpDim();
+        Vector2Int viewportPos = botLeftVPPos();
+        Vector2Int viewportCenter = viewportPos + viewportDim / 2;
+
+        Vector2 delta = displayMP - viewportCenter;
+        setRealPos(viewportCenter);
+
+        return delta;
+    }
 #endif
 
+
     private void FixedUpdate() {
+#if UNITY_EDITOR
         Vector2 delta = mouseMoveAndWrap(mouseLocked);
+#else
+        Vector2 delta = captureMouse(mouseLocked);
+#endif
         if(delta != Vector2.zero && !ignoreNextMouseMove) {
             CursorMove.Invoke(delta * cursorSpeed);
         }

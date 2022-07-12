@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ToggleFullscreen",
+                    "type": "Button",
+                    "id": "384d619f-9ae0-420d-8a14-d86207c1bd2a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -186,6 +195,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "ToggleLogDrawing",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "967b112e-e992-40d2-ae28-d5091c1310a0",
+                    "path": "<Keyboard>/f4",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ToggleFullscreen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dff0753d-7306-4a3b-b8ae-119e9516208a",
+                    "path": "<Keyboard>/f11",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ToggleFullscreen",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

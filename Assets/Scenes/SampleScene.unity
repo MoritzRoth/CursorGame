@@ -675,6 +675,7 @@ GameObject:
   - component: {fileID: 632958708}
   - component: {fileID: 632958707}
   - component: {fileID: 632958709}
+  - component: {fileID: 632958710}
   m_Layer: 0
   m_Name: Misc
   m_TagString: Untagged
@@ -722,6 +723,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doShow: 0
+--- !u!114 &632958710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632958706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a01565abf042ab6438af7862994ec402, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &649463948
 GameObject:
   m_ObjectHideFlags: 0
@@ -1438,6 +1451,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c14f37f0-58fa-416c-9470-72277bea7e31
     m_ActionName: Player/ToggleLogDrawing[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 632958710}
+        m_TargetAssemblyTypeName: ToggleFullscreen, Assembly-CSharp
+        m_MethodName: OnToggleFullscreen
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 384d619f-9ae0-420d-8a14-d86207c1bd2a
+    m_ActionName: Player/ToggleFullscreen[/Keyboard/f4,/Keyboard/f11]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -1511,7 +1540,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   mouseLocked: 0
-  alwaysShowCursor: 1
+  alwaysShowCursor: 0
   cursorSpeed: 1
 --- !u!1 &1048346498
 GameObject:
