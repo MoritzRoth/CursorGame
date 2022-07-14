@@ -8,7 +8,6 @@ public class ScreenBorders : MonoBehaviour
 
     public GameObject borderPrefab;
     public float borderThickness = 2f;
-    public BoxCollider2D[] keepInside;
 
     [System.Serializable] 
     public class ScreenResizeEvent : UnityEvent<Vector2> { }
@@ -80,7 +79,6 @@ public class ScreenBorders : MonoBehaviour
 
         screenCollider.offset = (min + max) / 2;
         screenCollider.size = span;
-        Bounds screenBounds = screenCollider.bounds;
 
         //left border
         borders[0].transform.localScale = new Vector3(borderThickness, borderThickness * 2 + span.y, 1);
@@ -97,28 +95,6 @@ public class ScreenBorders : MonoBehaviour
         //bottom border
         borders[3].transform.localScale = new Vector3(borderThickness * 2 + span.x, borderThickness, 1);
         borders[3].transform.position = new Vector3((min.x + max.x) / 2, min.y - borderThickness / 2, 0);
-
-
-        // keep freely moveable elements on sceen that should stay on screen
-        /*foreach(BoxCollider2D col in keepInside) {
-            GameObject go = col.gameObject;
-            Bounds b = col.bounds;
-
-            if(!screenBounds.Contains(b.min) || !screenBounds.Contains(b.max)) {
-                Vector2 closestPointOnCol = col.ClosestPoint(screenBounds.center);
-                Vector2 closetsPointOnScreen = screenCollider.ClosestPoint(b.center);
-
-                Vector2 closestPointsOffset = closetsPointOnScreen - closestPointOnCol;
-
-                // move game object directly next to screen
-                go.transform.position += (Vector3)closestPointsOffset;
-                // move game object inside screen
-                Vector3 moveInsideVec = new Vector3(Mathf.Sign(closestPointsOffset.x), Mathf.Sign(closestPointsOffset.y), 0);
-                moveInsideVec.Scale(b.size);
-                go.transform.position += moveInsideVec;
-
-            }
-        }*/
     }
 
     Vector2Int getRes() {
