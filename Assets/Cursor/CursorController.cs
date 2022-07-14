@@ -43,7 +43,8 @@ public class CursorController : MonoBehaviour
     void Update()
     {
         if(!usePhysics && rb.velocity != Vector2.zero) {
-            usePhysics = true;
+            rb.velocity = Vector2.zero;
+            //usePhysics = true;
         }
     }
 
